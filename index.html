@@ -228,6 +228,16 @@ section{padding:110px 0;position:relative}
   .navc .prox{animation:cutuca 1.6s ease-in-out infinite}
   @keyframes cutuca{0%,100%{transform:translateX(0)}50%{transform:translateX(6px)}}
 }
+/* celular: topo solto e botão fixo pulsando */
+@media (max-width:960px){
+  .nav{position:absolute}
+  .nav.solida{background:transparent;backdrop-filter:none;border-color:transparent}
+  .barra{left:14px;right:14px;bottom:14px}
+  body .barra .btn{justify-content:center;gap:12px;padding:19px 22px;font-size:17px;background:linear-gradient(90deg,#7b2ff7,#9b5cff,#7b2ff7);background-size:200% 100%;box-shadow:0 14px 34px -10px rgba(123,47,247,.9),inset 0 1px 0 rgba(255,255,255,.25);animation:pulsa 1.6s ease-in-out infinite,brilho 3s linear infinite}
+  body .barra .btn .seta{width:26px;height:26px}
+  @keyframes pulsa{0%,100%{transform:scale(1)}50%{transform:scale(1.045)}}
+  @keyframes brilho{to{background-position:-200% 0}}
+}
 /* oferta */
 .oferta{background:var(--roxo);color:#fff;overflow:hidden}
 .oferta:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 80% 0,rgba(255,255,255,.18),transparent 45%);pointer-events:none}
