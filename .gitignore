@@ -1,0 +1,5 @@
+# fica só no PC (prints originais sem borrão e scripts de preparo)
+_fotos-zip/
+img/prints-novos/
+*.py
+img/c0*.webp
