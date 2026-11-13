@@ -71,9 +71,10 @@ section{padding:110px 0;position:relative}
 .hero h1 .mk{white-space:normal}
 .hero .lead{margin:26px 0 34px}
 .hero .lead b{color:#fff;font-weight:600}
-.cel{position:relative;width:min(330px,82vw);margin-inline:auto}
-.cel .tela{position:relative;aspect-ratio:9/19.5;border-radius:46px;padding:11px;background:#1d1d21;box-shadow:0 0 0 2px #2c2c31,0 40px 80px -30px rgba(123,47,247,.55)}
-.cel .tela:before{content:"";position:absolute;top:22px;left:50%;transform:translateX(-50%);width:96px;height:26px;background:#000;border-radius:20px;z-index:3}
+.cel{position:relative;width:min(370px,86vw);margin-inline:auto}
+.cel .tela{position:relative;border-radius:40px;padding:10px;background:#1d1d21;box-shadow:0 0 0 2px #2c2c31,0 40px 80px -30px rgba(123,47,247,.55)}
+.cel .tela:before{display:none}
+.cel .tela .player{aspect-ratio:9/16;height:auto;border-radius:30px}
 .player{position:relative;width:100%;height:100%;border-radius:36px;overflow:hidden;background:#000;cursor:pointer}
 .player video{width:100%;height:100%;object-fit:cover}
 .player .p{position:absolute;inset:0;display:grid;place-items:center;transition:opacity .25s}
@@ -320,7 +321,7 @@ footer .w{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
   .hero .g{gap:0}
   .htxt .mao{order:1;margin-bottom:8px}
   .hero h1{order:2;margin-bottom:22px}
-  .cel{order:3;width:min(270px,68vw);margin-bottom:24px}
+  .cel{order:3;width:min(330px,84vw);margin-bottom:24px}
   .hero .lead{order:4;margin:0 0 20px;text-align:center}
   .hero .btn{order:5}
   .hero .mini-info{order:6;justify-content:center}
