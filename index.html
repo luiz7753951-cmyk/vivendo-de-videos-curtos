@@ -763,9 +763,9 @@ addEventListener('scroll', () => {
   barra.classList.toggle('on', scrollY > 600 && !(r.top < innerHeight && r.bottom > 0));
 }, { passive: true });
 
-// ---------- leva as UTMs do link da bio até a Kiwify ----------
+// ---------- leva as UTMs e o afid (afiliado) até a Kiwify ----------
 const q = new URLSearchParams(location.search);
-document.querySelectorAll('[data-checkout]').forEach(a => { const u = new URL(a.href); q.forEach((v, k) => { if (/^(utm_|sck|src)/.test(k)) u.searchParams.set(k, v); }); a.href = u; });
+document.querySelectorAll('[data-checkout]').forEach(a => { const u = new URL(a.href); q.forEach((v, k) => { if (/^(utm_|sck|src|afid)/.test(k)) u.searchParams.set(k, v); }); a.href = u; });
 </script>
 </body>
 </html>
