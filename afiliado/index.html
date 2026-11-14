@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gerador de link · Afiliados</title>
+<meta name="description" content="Cole seu link de afiliado da Kiwify e gere o link da página de vendas com o seu código.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0f0f11">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='16' fill='%237b2ff7'/><path d='M25 19l22 13-22 13z' fill='white'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --preto:#0f0f11; --preto2:#17171a; --linha:#26262b;
+  --roxo:#7b2ff7; --roxo-claro:#b48cff;
+  --branco:#fafaf7; --cinza:#a3a3ad; --cinza2:#6b6b75;
+  --amarelo:#ffd84d; --verde:#25d366; --vermelho:#ff5c5c;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+[hidden]{display:none!important}
+body{background:var(--preto);color:var(--branco);font:400 17px/1.6 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased;min-height:100vh}
+a{color:inherit}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+.w{width:min(640px,100% - 32px);margin-inline:auto}
+.t{font-family:"Bricolage Grotesque",Inter,sans-serif;font-weight:800;letter-spacing:-.025em;line-height:1.05}
+.mk{position:relative;white-space:nowrap;z-index:0;color:var(--preto)}
+.mk:before{content:"";position:absolute;left:-.1em;right:-.1em;bottom:.04em;height:.55em;background:var(--amarelo);z-index:-1;transform:skew(-8deg) rotate(-1deg);border-radius:3px}
+
+.topo{display:flex;align-items:center;gap:10px;padding:22px 0;text-decoration:none;font:800 18px/1 "Bricolage Grotesque";letter-spacing:-.02em}
+.topo b{width:32px;height:32px;border-radius:10px;background:var(--roxo);display:grid;place-items:center}
+.topo svg{width:14px;height:14px}
+
+header{padding:28px 0 34px;text-align:center}
+h1{font-size:clamp(34px,8vw,52px)}
+header p{color:var(--cinza);font-size:18px;margin-top:14px}
+
+.card{background:var(--preto2);border:1px solid var(--linha);border-radius:22px;padding:26px}
+label{display:block;font-weight:700;margin-bottom:10px}
+.campo{width:100%;background:var(--preto);border:2px solid var(--linha);border-radius:14px;padding:16px;color:var(--branco);font:500 16px/1.4 Inter;outline:none;transition:border-color .15s}
+.campo:focus{border-color:var(--roxo)}
+.campo::placeholder{color:var(--cinza2)}
+.dica{font-size:14px;color:var(--cinza);margin-top:10px}
+
+.btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;font:700 17px/1 Inter;padding:19px 22px;border-radius:999px;background:var(--roxo);color:#fff;margin-top:18px;transition:transform .15s,background .15s;text-decoration:none}
+.btn:hover{transform:translateY(-2px);background:#8b45ff}
+.btn.claro{background:#fff;color:var(--preto)}
+.btn.claro:hover{background:#eee}
+.btn.zap{background:var(--verde);color:#0b2e17}
+
+.erro{margin-top:14px;padding:14px 16px;border-radius:12px;background:rgba(255,92,92,.1);border:1px solid rgba(255,92,92,.35);color:#ffb3b3;font-size:15px}
+
+.pronto{margin-top:22px;padding-top:22px;border-top:1px dashed var(--linha)}
+.pronto .ok{display:flex;align-items:center;gap:8px;color:var(--verde);font-weight:700}
+.link{margin-top:12px;padding:16px;border-radius:14px;background:var(--preto);border:2px solid var(--roxo);font:600 16px/1.4 Inter;word-break:break-all;user-select:all}
+.link b{color:var(--amarelo)}
+.codigo{font-size:14px;color:var(--cinza);margin-top:10px}
+.botoes{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.botoes .btn{margin-top:12px;font-size:15px;padding:16px 12px}
+.pronto .btn.claro{margin-top:16px}
+
+.passos{margin:44px 0 0}
+.passos h2{font-size:28px;margin-bottom:18px;text-align:center}
+.passo{display:flex;gap:16px;align-items:flex-start;padding:18px 0;border-bottom:1px solid var(--linha)}
+.passo:last-child{border:0}
+.passo i{flex:none;width:34px;height:34px;border-radius:50%;background:var(--roxo);display:grid;place-items:center;font:800 16px/1 "Bricolage Grotesque";font-style:normal}
+.passo p{color:var(--cinza)}
+.passo strong{color:var(--branco)}
+
+.alerta{margin-top:30px;padding:18px 20px;border-radius:16px;background:rgba(255,216,77,.08);border:1px solid rgba(255,216,77,.3);font-size:15px;color:#f3e3a6}
+.alerta strong{color:var(--amarelo)}
+
+footer{color:var(--cinza2);font-size:13px;text-align:center;padding:44px 0 34px}
+</style>
+</head>
+<body>
+<div class="w">
+  <a class="topo" href="/"><b><svg viewBox="0 0 24 24"><path d="M7 4l13 8-13 8z" fill="#fff"/></svg></b>Vivendo de Vídeos Curtos</a>
+
+  <header>
+    <h1 class="t">Seu link de afiliado <span class="mk">em 10 segundos</span></h1>
+    <p>Cole o link que a Kiwify te deu. A gente devolve o link da página de vendas com o seu código.</p>
+  </header>
+
+  <div class="card">
+    <label for="entrada">Seu link de afiliado da Kiwify</label>
+    <input class="campo" id="entrada" type="text" inputmode="url" autocomplete="off" spellcheck="false"
+      placeholder="https://pay.kiwify.com.br/u1taOVg?afid=...">
+    <p class="dica">Serve o link de Checkout ou o da Sales Page. Também pode colar só o código.</p>
+    <button class="btn" id="gerar" type="button">Gerar meu link</button>
+
+    <div class="erro" id="erro" hidden></div>
+
+    <div class="pronto" id="pronto" hidden>
+      <div class="ok">✓ Pronto! Esse é o seu link:</div>
+      <div class="link" id="link"></div>
+      <p class="codigo">Seu código: <b id="codigo"></b></p>
+      <div class="botoes">
+        <button class="btn" id="copiar" type="button">Copiar link</button>
+        <a class="btn zap" id="zap" target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+      <a class="btn claro" id="abrir" target="_blank" rel="noopener">Abrir e conferir</a>
+    </div>
+  </div>
+
+  <section class="passos">
+    <h2 class="t">Como funciona</h2>
+    <div class="passo"><i>1</i><p><strong>Se afilie ao Pacotão.</strong> Pelo link de convite que o Luiz passou. A aprovação é na hora.</p></div>
+    <div class="passo"><i>2</i><p><strong>Copie seu link na Kiwify.</strong> Menu <strong>Minhas afiliações</strong> → Pacotão Black Friday → aba <strong>Links</strong>. Copie qualquer um dos dois.</p></div>
+    <div class="passo"><i>3</i><p><strong>Cole aqui em cima e gere.</strong> O link que sai leva a pessoa pra página de vendas oficial, que é a que mais converte.</p></div>
+    <div class="passo"><i>4</i><p><strong>Divulgue esse link.</strong> Toda venda que vier por ele cai na Kiwify como sua, com <strong>30% de comissão</strong>.</p></div>
+  </section>
+
+  <div class="alerta">
+    <strong>Atenção:</strong> não divulgue o link "Sales Page" que aparece na Kiwify (o que começa com kiwify.app). Ele leva pra página, mas perde o seu código no caminho. Use sempre o link gerado aqui.
+  </div>
+
+  <footer>Vivendo de Vídeos Curtos · Programa de afiliados</footer>
+</div>
+
+<script>
+const SITE = 'https://vivendovideoscurtos.com.br/';
+const $ = id => document.getElementById(id);
+const entrada = $('entrada'), erro = $('erro'), pronto = $('pronto');
+
+function acharCodigo(txt) {
+  txt = (txt || '').trim();
+  if (!txt) return { erro: 'Cole o seu link de afiliado da Kiwify aqui em cima.' };
+  const m = txt.match(/[?&]afid=([A-Za-z0-9_-]+)/i);
+  if (m) return { codigo: m[1] };
+  if (/^[A-Za-z0-9_-]{5,20}$/.test(txt)) return { codigo: txt };
+  if (/dashboard\.kiwify\.com(\.br)?\/join\/affiliate/i.test(txt))
+    return { erro: 'Esse é o link de CONVITE (pra se afiliar). Depois de se afiliar, copie o seu link em Minhas afiliações → Links.' };
+  if (/kiwify/i.test(txt))
+    return { erro: 'Esse link não tem o seu código de afiliado (o "afid="). Copie o link em Minhas afiliações → Pacotão → aba Links.' };
+  return { erro: 'Não achei o código nesse link. Copie o link em Minhas afiliações → Pacotão → aba Links e cole aqui.' };
+}
+
+function gerar() {
+  const r = acharCodigo(entrada.value);
+  if (r.erro) { erro.textContent = r.erro; erro.hidden = false; pronto.hidden = true; return; }
+  erro.hidden = true;
+  const url = SITE + '?afid=' + encodeURIComponent(r.codigo);
+  $('link').innerHTML = SITE + '?afid=<b></b>';
+  $('link').querySelector('b').textContent = r.codigo;
+  $('codigo').textContent = r.codigo;
+  $('abrir').href = url;
+  $('zap').href = 'https://wa.me/?text=' + encodeURIComponent(url);
+  $('copiar').dataset.url = url;
+  $('copiar').textContent = 'Copiar link';
+  pronto.hidden = false;
+  pronto.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+$('gerar').addEventListener('click', gerar);
+entrada.addEventListener('keydown', e => { if (e.key === 'Enter') gerar(); });
+entrada.addEventListener('paste', () => setTimeout(gerar, 0));
+
+$('copiar').addEventListener('click', async e => {
+  const url = e.currentTarget.dataset.url;
+  try { await navigator.clipboard.writeText(url); }
+  catch {
+    const t = document.createElement('textarea'); t.value = url; document.body.appendChild(t);
+    t.select(); document.execCommand('copy'); t.remove();
+  }
+  e.currentTarget.textContent = 'Copiado ✓';
+});
+</script>
+</body>
+</html>
