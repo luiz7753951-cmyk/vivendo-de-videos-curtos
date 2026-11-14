@@ -238,6 +238,15 @@ section{padding:110px 0;position:relative}
   @keyframes brilho{to{background-position:-200% 0}}
 }
 .obrig{margin-top:12px;font:600 13px/1.4 Inter;color:#e5383b;text-align:center}
+/* seta flutuante em cima dos carrosséis (só celular) */
+.carr{position:relative}
+.flecha{display:none}
+@media (max-width:960px){
+  .flecha{display:grid;place-items:center;position:absolute;top:38%;z-index:5;width:54px;height:54px;border-radius:50%;background:var(--amarelo);color:var(--preto);font:900 30px/1 Inter;box-shadow:0 10px 26px -6px rgba(0,0,0,.7);transition:opacity .25s}
+  .flecha.dir{right:4px;animation:cutuca 1.4s ease-in-out infinite}
+  .flecha.esq{left:4px}
+  .flecha[hidden]{display:none}
+}
 /* oferta */
 .oferta{background:var(--roxo);color:#fff;overflow:hidden}
 .oferta:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 80% 0,rgba(255,255,255,.18),transparent 45%);pointer-events:none}
@@ -691,8 +700,12 @@ document.querySelectorAll('.navc').forEach(n => {
   const txt = n.querySelector('span'), ant = n.querySelector('.ant'), prox = n.querySelector('.prox');
   const atual = () => { const x = alvo.scrollLeft + alvo.clientWidth / 2; let m = 0, d = 1e9; itens.forEach((it, i) => { const c = it.offsetLeft + it.offsetWidth / 2 - alvo.offsetLeft; if (Math.abs(c - x) < d) { d = Math.abs(c - x); m = i; } }); return m; };
   const vai = i => { const it = itens[Math.max(0, Math.min(itens.length - 1, i))]; alvo.scrollTo({ left: it.offsetLeft - alvo.offsetLeft - (alvo.clientWidth - it.offsetWidth) / 2, behavior: 'smooth' }); };
-  const marca = () => { const i = atual(); txt.textContent = `${i + 1} de ${itens.length}`; ant.disabled = i === 0; prox.disabled = i === itens.length - 1; };
+  const marca = () => { const i = atual(); txt.textContent = `${i + 1} de ${itens.length}`; ant.disabled = i === 0; prox.disabled = i === itens.length - 1; const fd = alvo.parentNode.querySelector('.flecha.dir'), fe = alvo.parentNode.querySelector('.flecha.esq'); if (fd) fd.hidden = i === itens.length - 1; if (fe) fe.hidden = i === 0; };
   ant.onclick = () => vai(atual() - 1); prox.onclick = () => vai(atual() + 1);
+  const caixa = document.createElement('div'); caixa.className = 'carr'; alvo.parentNode.insertBefore(caixa, alvo); caixa.appendChild(alvo);
+  const fd = document.createElement('button'); fd.className = 'flecha dir'; fd.setAttribute('aria-label', 'Próximo'); fd.textContent = '›'; caixa.appendChild(fd);
+  const fe = document.createElement('button'); fe.className = 'flecha esq'; fe.setAttribute('aria-label', 'Anterior'); fe.textContent = '‹'; caixa.appendChild(fe);
+  fd.onclick = () => vai(atual() + 1); fe.onclick = () => vai(atual() - 1);
   alvo.addEventListener('scroll', () => requestAnimationFrame(marca), { passive: true }); marca();
 });
 
